@@ -40,7 +40,7 @@ const EmiCalculator = () => {
     
 
       console.log(typeof requestData, 'type');
-      const response = await axios.post('https://koffeecode.vercel.app/api/Calculate', requestData
+      const response = await axios.post('http://localhost:3000/api/Calculate', requestData
       );
 
       if (response.status === 200) {
@@ -52,20 +52,18 @@ const EmiCalculator = () => {
 
       } else {
         setIsErrors('Something went wrong. Please try again later.');
-        setUserInfo("");
 
         reset();
       }
     } catch (err) {
       setIsErrors('Something went wrong. Please try again later.');
       reset();
-      setUserInfo("");
 
     }
     setMassage('');
 
   };
-
+console.log("userInfo.length",userInfo.length)
   return (
     <div className="mt-[5rem]">
       <div className="bg-white shadow-md rounded-md md:max-w-[1200px] flex flex-col justify-center items-center mx-auto md:mt-[6rem] p-5">
@@ -159,19 +157,19 @@ const EmiCalculator = () => {
               <h1 className="text-[24px]   text-[#333]">
                 Calculate Your Emi per Month Quickly
               </h1>
-              <h4 className="text-[18px]   text-[#333]">₹ {userInfo?.emi} </h4>
+              <h4 className="text-[18px]   text-[#333]">  {userInfo?.st === "success" ? `₹ ${userInfo?.emi}` : ''} </h4>
             </div>
 
             <div className="flex justify-between space-x-4 items-center mt-5">
               <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-[18px]   text-[#333]">Total Interest</h1>
-                <h4 className="text-[18px]   text-[#333]">₹  {userInfo?.interest}</h4>
+                <h4 className="text-[18px]   text-[#333]">  {userInfo?.st === "success" ? `₹ ${userInfo?.interest}` : ''} </h4>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-[18px]   text-[#333]">
                   Amount With Interest
                 </h1>
-                <h4 className="text-[18px]   text-[#333]">₹ {userInfo?.totalamt}</h4>
+                <h4 className="text-[18px]   text-[#333]">  {userInfo?.st === "success" ? `₹ ${userInfo?.totalamt}` : ''} </h4>
               </div>
             </div>
             <div className="mt-3">
