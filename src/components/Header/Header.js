@@ -89,6 +89,7 @@ function Header(props) {
                   ? "fixed top-[4rem] left-0 bg-[#046598] w-full ease-in-out duration-500 z-[1000]"
                   : "fixed top-[-100%]"
               }>
+                
               <div className="md:hidden flex flex-col text-white p-5   mx-auto justify-center items-center">
               {routes?.map((item, index) => {
                 return (
@@ -116,8 +117,16 @@ function Header(props) {
                 </div>
                 );
               })}
-               
-               
+           <button
+                className="border-[#fff] border-solid border-[2px] py-[7px] mt-4 px-[18px]  rounded-[40px]  text-[18px]  leading-[22px] text-[#fff] cursor-pointer text-center  ease-in-out duration-500 hover:bg-white hover:text-[#046598]"
+              >
+                Sin In
+              </button>
+              <button
+                className="border-[#fff] border-solid mt-6 hover:bg-white hover:text-[#046598] border-[2px] py-[7px]  px-[18px]  rounded-[40px]  text-[18px]  leading-[22px] text-[#fff] cursor-pointer text-center  ease-in-out duration-500"
+              >
+               Post Property
+              </button>
               </div>
             </div>
           </div>
