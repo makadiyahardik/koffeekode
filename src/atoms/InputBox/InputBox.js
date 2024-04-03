@@ -34,7 +34,7 @@ const InputType = ({
       {error && (
         <div className="text-[#FF7171] text-[12px] flex items-center">
         
-          <div className="ml-1">{error.message}</div>
+          <div className="ml-1">{error&&error.message}</div>
         </div>
       )}
     </div>

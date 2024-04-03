@@ -26,8 +26,7 @@ const EmiCalculator = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  https://langing-gif.vercel.app/
-  let API_URL = 'https://koffeecode/api/Calculate';
+  const API_URL = 'https://koffeecode/api/Calculate';
 
   const onSubmit = async (data) => {
     console.log('data', typeof data.amount);
@@ -42,7 +41,7 @@ const EmiCalculator = () => {
     
 
       console.log(typeof requestData, 'type');
-      const response = await axios.post(API_URL, requestData, 
+      const response = await axios.post(API_URL, requestData
       );
 
       if (response.status === 200) {
