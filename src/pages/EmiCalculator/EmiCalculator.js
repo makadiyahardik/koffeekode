@@ -26,8 +26,8 @@ const EmiCalculator = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  let API_URL = 'https://homexp.in/Api/Emicalculator';
+  https://langing-gif.vercel.app/
+  let API_URL = 'https://koffeecode/api/Calculate';
 
   const onSubmit = async (data) => {
     console.log('data', typeof data.amount);
@@ -35,23 +35,20 @@ const EmiCalculator = () => {
       const requestData = {
         amount: Number(data.amount),
         rate: Number(data.rate),
-        tenture: Number(data.year),
+        tenure: Number(data.year),
       };
       console.log('requestData', typeof requestData.year);
 
-      const headers = {
-        Authorization: 'Bearer 4ccda7514adc0f13595a585205fb9761',
-      };
+    
 
       console.log(typeof requestData, 'type');
       const response = await axios.post(API_URL, requestData, 
- headers,
       );
 
       if (response.status === 200) {
         const responseData = response.data;
         console.log(responseData, 'responseData');
-        setMassage('Success');
+        setMassage('Successfully created loan tenure');
         setUserInfo(responseData);
         reset();
       } else {
@@ -93,6 +90,7 @@ const EmiCalculator = () => {
               className="flex flex-col justify-start
    items-center"
             >
+              {massage && massage}
               <form
                 className="text-[16px] font-semibold leading-[30px]"
                 onSubmit={handleSubmit(onSubmit)}
@@ -151,19 +149,19 @@ const EmiCalculator = () => {
               <h1 className="text-[24px]   text-[#333]">
                 Calculate Your Emi per Month Quickly
               </h1>
-              <h4 className="text-[18px]   text-[#333]">₹ </h4>
+              <h4 className="text-[18px]   text-[#333]">₹ {userInfo?.emi} </h4>
             </div>
 
             <div className="flex justify-between space-x-4 items-center mt-5">
               <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-[18px]   text-[#333]">Total Interest</h1>
-                <h4 className="text-[18px]   text-[#333]">₹ </h4>
+                <h4 className="text-[18px]   text-[#333]">₹  {userInfo?.interest}</h4>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-[18px]   text-[#333]">
                   Amount With Interest
                 </h1>
-                <h4 className="text-[18px]   text-[#333]">₹ </h4>
+                <h4 className="text-[18px]   text-[#333]">₹ {userInfo?.totalamt}</h4>
               </div>
             </div>
             <div className="mt-3">
