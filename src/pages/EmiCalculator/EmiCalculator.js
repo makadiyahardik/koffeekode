@@ -21,6 +21,7 @@ const EmiCalculator = () => {
   const {
     register,
     handleSubmit,
+    reset ,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -43,20 +44,23 @@ const EmiCalculator = () => {
       };
 
       console.log(typeof requestData, 'type');
-      const response = await axios.post(API_URL, requestData, {
-        headers: headers,
-      });
+      const response = await axios.post(API_URL, requestData, 
+ headers,
+      );
 
       if (response.status === 200) {
         const responseData = response.data;
         console.log(responseData, 'responseData');
         setMassage('Success');
         setUserInfo(responseData);
+        reset();
       } else {
         setIsErrors('Something went wrong. Please try again later.');
+        reset();
       }
     } catch (err) {
       setIsErrors('Something went wrong. Please try again later.');
+      reset();
     }
   };
 
@@ -122,7 +126,7 @@ const EmiCalculator = () => {
                         id="rate"
                         name="rate"
                         type="number"
-                        placeholder="Enter rate of interest%"
+                        placeholder="Enter rate of interest %"
                         label="Interest Rate :"
                         register={register}
                         error={errors.rate}
