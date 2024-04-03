@@ -26,7 +26,6 @@ const EmiCalculator = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const API_URL = 'https://koffeecode/api/Calculate';
 
   const onSubmit = async (data) => {
     console.log('data', typeof data.amount);
@@ -41,7 +40,7 @@ const EmiCalculator = () => {
     
 
       console.log(typeof requestData, 'type');
-      const response = await axios.post(API_URL, requestData
+      const response = await axios.post('https://koffeecode.vercel.app/api/Calculate', requestData
       );
 
       if (response.status === 200) {
@@ -50,14 +49,21 @@ const EmiCalculator = () => {
         setMassage('Successfully created loan tenure');
         setUserInfo(responseData);
         reset();
+
       } else {
         setIsErrors('Something went wrong. Please try again later.');
+        setUserInfo("");
+
         reset();
       }
     } catch (err) {
       setIsErrors('Something went wrong. Please try again later.');
       reset();
+      setUserInfo("");
+
     }
+    setMassage('');
+
   };
 
   return (
@@ -85,10 +91,15 @@ const EmiCalculator = () => {
 
         <div className="flex w-full md:flex-row flex-col mx-auto">
           <div className=" w-full">
+            {isError && <div className="text-[#FF7171] text-[12px] flex items-center">
+        
+        <div className="ml-1">{isError&&isError}</div>
+      </div>}
             <div
               className="flex flex-col justify-start
    items-center"
             >
+
               {massage && massage}
               <form
                 className="text-[16px] font-semibold leading-[30px]"
